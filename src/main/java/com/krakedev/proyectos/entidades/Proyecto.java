@@ -1,0 +1,68 @@
+package com.krakedev.proyectos.entidades;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "proyectos")
+public class Proyecto {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(nullable = false, length = 100)
+    private String nombre;
+    @Column(length = 250)
+    private String descripcion;
+    @Column(nullable = false)
+    private LocalDate fechaInicio;
+
+    @OneToMany(mappedBy = "proyecto")
+    @JsonIgnore
+    private List<Tarea> tareas;
+
+    public Proyecto() {
+    }
+
+    public Proyecto(String nombre, String descripcion, LocalDate fechaInicio) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.fechaInicio = fechaInicio;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+}
