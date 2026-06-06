@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.krakedev.proyectos.entidades.Empleado;
@@ -17,6 +18,7 @@ public class EmpleadoController {
     private EmpleadoService service;
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> guardar(
             @RequestBody Empleado empleado){
 
@@ -26,6 +28,7 @@ public class EmpleadoController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     public List<Empleado> listar(){
         return service.listar();
     }
