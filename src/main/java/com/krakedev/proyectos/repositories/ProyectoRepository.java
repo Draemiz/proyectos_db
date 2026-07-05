@@ -5,4 +5,6 @@ import com.krakedev.proyectos.entidades.Proyecto;
 
 public interface ProyectoRepository
         extends JpaRepository<Proyecto,Integer>{
+
+    long count();
 }

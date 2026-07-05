@@ -40,4 +40,11 @@ public class ProyectoController {
 
         return service.listar();
     }
+
+    @GetMapping("/publico/resumen")
+    public ResponseEntity<Long> resumenPublico(){
+
+        return ResponseEntity.ok(
+                service.contarProyectos());
+    }
 }
