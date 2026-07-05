@@ -4,6 +4,7 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 import TablaProyectos from './components/TablaProyectos';
 import FormularioProyecto from './components/FormularioProyecto';
+import FormularioTarea from './components/FormularioTarea';
 
 function App() {
 
@@ -57,12 +58,7 @@ function App() {
         )}
 
         {vistaActual === 'tareas' && (
-          <div className="form-card">
-            <h3>Crear tareas</h3>
-            <p style={{ color: 'var(--color-ink-soft)', fontSize: '0.88rem' }}>
-              (Este formulario lo conectamos más adelante si tu examen lo requiere a detalle.)
-            </p>
-          </div>
+          <FormularioTarea rol={rol} />
         )}
       </main>
     </div>
