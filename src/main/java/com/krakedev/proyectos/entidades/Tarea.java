@@ -13,34 +13,33 @@ public class Tarea {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false,length = 200)
+    @Column(nullable = false, length = 200)
     private String descripcion;
     @Column(nullable = false)
     private LocalDate fechaLimite;
     @Column(nullable = false)
     private double costoEstimado;
+    @Column(length = 10)
+    private String prioridad;
 
     @ManyToOne
     @JoinColumn(name = "proyecto_id", nullable = false)
     private Proyecto proyecto;
 
     @ManyToMany
-    @JoinTable(
-        name = "tarea_empleados",
-        joinColumns = @JoinColumn(name = "tarea_id"),
-        inverseJoinColumns = @JoinColumn(name = "empleado_id")
-    )
+    @JoinTable(name = "tarea_empleados", joinColumns = @JoinColumn(name = "tarea_id"), inverseJoinColumns = @JoinColumn(name = "empleado_id"))
     private List<Empleado> empleados;
 
     public Tarea() {
     }
 
     public Tarea(String descripcion, LocalDate fechaLimite,
-                 double costoEstimado, Proyecto proyecto) {
+            double costoEstimado, String prioridad, Proyecto proyecto) {
 
         this.descripcion = descripcion;
         this.fechaLimite = fechaLimite;
         this.costoEstimado = costoEstimado;
+        this.prioridad = prioridad;
         this.proyecto = proyecto;
     }
 
@@ -74,6 +73,14 @@ public class Tarea {
 
     public void setCostoEstimado(double costoEstimado) {
         this.costoEstimado = costoEstimado;
+    }
+
+    public String getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(String prioridad) {
+        this.prioridad = prioridad;
     }
 
     public Proyecto getProyecto() {

@@ -1,8 +1,10 @@
 package com.krakedev.proyectos.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +24,17 @@ public class TareaController {
     public ResponseEntity<?> guardar(
             @RequestBody Tarea tarea){
 
-        try{ return ResponseEntity.ok(service.guardar(tarea));
-        }catch(Exception e){ return ResponseEntity.internalServerError().body(e.getMessage());
+        try{
+            return ResponseEntity.ok(service.guardar(tarea));
+
+        } catch(IllegalArgumentException e){
+
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("error", "Prioridad no válida"));
+
+        } catch(Exception e){
+            return ResponseEntity.internalServerError().body(e.getMessage());
         }
     }
 

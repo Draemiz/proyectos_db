@@ -19,8 +19,19 @@ public class TareaService {
         return repository.findAll();
     }
 
-    public Tarea guardar(Tarea empleado) {
-        return repository.save(empleado);
+    public Tarea guardar(Tarea tarea) {
+
+        String prioridad = tarea.getPrioridad();
+
+        if (prioridad == null ||
+                (!prioridad.equals("ALTA") &&
+                 !prioridad.equals("MEDIA") &&
+                 !prioridad.equals("BAJA"))) {
+
+            throw new IllegalArgumentException("Prioridad no válida");
+        }
+
+        return repository.save(tarea);
     }
 
     public Optional<Tarea> buscarPorId(int id) {
