@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import com.krakedev.proyectos.entidades.Proyecto;
 import com.krakedev.proyectos.services.ProyectoService;
 
+@CrossOrigin(
+        origins = "http://localhost:5173",
+        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE},
+        allowedHeaders = {"Authorization", "Content-Type"})
 @RestController
 @RequestMapping("/api/proyectos")
 public class ProyectoController {

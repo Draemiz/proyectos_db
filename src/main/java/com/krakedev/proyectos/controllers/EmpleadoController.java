@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import com.krakedev.proyectos.entidades.Empleado;
 import com.krakedev.proyectos.services.EmpleadoService;
 
+@CrossOrigin(
+        origins = "http://localhost:5173",
+        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE},
+        allowedHeaders = {"Authorization", "Content-Type"})
 @RestController
 @RequestMapping("/api/empleados")
 public class EmpleadoController {

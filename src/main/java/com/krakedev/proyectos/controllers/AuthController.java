@@ -13,7 +13,10 @@ import com.krakedev.proyectos.security.JwtUtil;
 import com.krakedev.proyectos.services.TokenBlacklistService;
 import com.krakedev.proyectos.services.UsuarioService;
 
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(
+        origins = "http://localhost:5173",
+        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE},
+        allowedHeaders = {"Authorization", "Content-Type"})
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {

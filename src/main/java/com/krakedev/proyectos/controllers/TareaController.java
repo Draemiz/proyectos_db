@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import com.krakedev.proyectos.entidades.Tarea;
 import com.krakedev.proyectos.services.TareaService;
 
+@CrossOrigin(
+        origins = "http://localhost:5173",
+        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE},
+        allowedHeaders = {"Authorization", "Content-Type"})
 @RestController
 @RequestMapping("/api/tareas")
 public class TareaController {
